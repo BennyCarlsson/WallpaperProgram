@@ -7,6 +7,7 @@ public class ScrapeWebsites {
 		,"http://www.expressen.se/","http://www.dn.se/"
 		,"http://www.aftonbladet.se/","http://www.svt.se/"};;
 	public String scrapeWebsites(){
+		System.out.println("Scraping websites..");
 		String text = "";
 		for(int i = 0; i < url.length;i++){
 			try {

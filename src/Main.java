@@ -102,22 +102,25 @@ public class Main {
 	}
 	private void doProgram(){
 		if(isInternetReachable()){
-			String text = getText();
-			HashMap<String, Word> wordMap = wordsSorter.countAllWords(text);
-			ArrayList<Word> words = wordsSorter.hashMapToSortedArrayList(wordMap);
-			try {
-				fileHandler.printWordsToFile(words);
-				System.out.println("do program");
-				imageCreator.createImage();
-				changeBackgroundImage();
-				setTimer(1000*60*60*6); //6 hours
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(fileHandler.textIsOld()){
+				String text = getText();
+				HashMap<String, Word> wordMap = wordsSorter.countAllWords(text);
+				ArrayList<Word> words = wordsSorter.hashMapToSortedArrayList(wordMap);
+				try {
+					fileHandler.printWordsToFile(words);
+					System.out.println("do program");
+					imageCreator.createImage();
+					changeBackgroundImage();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				printWords(words);
+			}else{
+				System.out.print("text is up to date, no update was needed. Type -refresh hard/soft for update");
 			}
-			printWords(words);
 		}else{
-			setTimer((1000*60*60)/2); //30min if no internet
+			setTimer((1000*60*60)/4); //15min if no internet
 		}
 	}
 	private void setTimer(int time){

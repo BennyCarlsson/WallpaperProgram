@@ -64,7 +64,6 @@ public class FileHandler {
 			System.out.println("Error! could not read textfile.txt");
 			e.printStackTrace();
 		}
-		System.out.println("Scraping websites..");
 		return true;
 	}
 	public void writeTextToFile(String text){
